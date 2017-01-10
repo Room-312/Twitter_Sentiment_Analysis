@@ -24,8 +24,6 @@ def download_all_tweets( screen_name ):
     lastTweetID = 0,
 
 
-    #we have all of the tweets and retweets in the allTweets list. But thats is taking too long 
-
     new_tweets = api.user_timeline(screen_name, count =200)
     allTweets.extend(new_tweets)
 
