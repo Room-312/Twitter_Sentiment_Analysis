@@ -5,7 +5,7 @@ Created on Thu Jan 12 12:20:43 2017
 @author: Hüseyin
 """
 
-from SentimentAnalysis import download_all_tweets
+from download_all_tweets import download_all_tweets
 import textblob as tb
 
 screen_name = input("Enter the screen name of the user you want to analyze: ")
