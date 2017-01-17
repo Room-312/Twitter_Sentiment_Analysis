@@ -5,18 +5,22 @@ Created on Thu Jan 12 12:20:43 2017
 @author: Hüseyin
 """
 
-from download_all_tweets import download_all_tweets
+from SentimentAnalysis import download_all_tweets
 import textblob as tb
+from textblob.sentiments import NaiveBayesAnalyzer
 
+
+analyzer = NaiveBayesAnalyzer()
 screen_name = input("Enter the screen name of the user you want to analyze: ")
 user = screen_name
 all_tweets= []
 all_tweets = download_all_tweets(user)
-sentiment_score = 0
+sentiment_score_pos = 0
+sentiment_score_neg = 0
 for tweet in all_tweets:
-    blob = tb.TextBlob(tweet.text)
-    sentiment_score += float(blob.sentiment.polarity)
+    blob = tb.TextBlob(tweet.text, analyzer= analyzer)
+    sentiment_score_pos += float(blob.sentiment.p_pos)
+    sentiment_score_neg += float(blob.sentiment.p_neg)
     
-avg_polarity = sentiment_score / len(all_tweets)
-print(sentiment_score)
-print(avg_polarity)
+print(sentiment_score_pos)
+print(sentiment_score_neg)
